@@ -26,18 +26,18 @@ header{
     ;
 }
 
+.forecast-section{
+    margin-right: 30px;
+}
+
 .forecast-header-section{
     display: flex;
     text-align: center;
 }
 
 .forecast-header-section img{
-    margin-top: 8px;
-    margin-left: 10px;
-}
-
-.forecast-section{
-    width: 80%;
+    margin-top: 3px;
+    margin-left: 6px;
 }
 
 .daily-forecast{
@@ -64,7 +64,9 @@ header{
     background-color: rgb(2, 149, 199);
     color: white;
     margin-top: 10px;
-    padding: 10px 5px;
+    padding: 10px 10px;
+    height: 200px;
+    width: 160px;
 }
 
 .forecast-boxes p{
@@ -114,6 +116,7 @@ header{
     border-radius: 5px;
     border: none;
     background-color: lightgray;
+    width: 100%;
 }
 
 .btn:hover{
@@ -128,13 +131,7 @@ header{
 
 .fiveDays-forecast{
  display: flex;
+ flex-direction: row;
  justify-content: space-between;
- align-items: flex-start;
-
-}
-
-.forecast-boxes{
-    padding-right: 30px;
-    height: 180px;
 
 }

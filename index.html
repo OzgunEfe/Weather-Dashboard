@@ -21,62 +21,19 @@
     <aside class="serch-city-section">
       <h2>Search for a City:</h2>
       <div class="search-section">
-        <input type="text" placeholder="Please enter a city name">
-        <button class="btn">Search</button>
+        <input id="searchInput" type="text" placeholder="Please enter a city name">
+        <button class="btn searchBtn">Search</button>
       </div>
-  
       <hr>
-  
-      <button class="btn">London</button>
+      <div class="historyCityName hide"></div>
     </aside>
   
     <main class="forecast-section">
-      <section class="daily-forecast">
-        <div class="forecast-header-section">
-          <h2>London (17/12/2022)</h2>
-          <img src="./assets/icons/cloud.png" alt="weather-icon" width="30px" height="30px">
-        </div>
-          <p>Temp: 1°C</p>
-          <p>Wind: 3.48 kph</p>
-          <p id="daily-forecast-last-item">Humidity: 86%</p>
-      </section>
-      <h3>5-Day Forecast:</h3>
+      <section class="daily-forecast hide"></section>
+
+      <h3 class="fiveDayForevastTitle hide">5-Day Forecast:</h3>
+
       <section class="fiveDays-forecast">
-        <div class="forecast-boxes">
-          <h4>18/12/2022</h4>
-          <img src="./assets/icons/cloud.png" width="20px" height="20px" alt="weather-icon">
-          <p>Temp: 1°C</p>
-          <p>Wind: 3.48 kph</p>
-          <p>Humidity: 65%</p>
-        </div>
-        <div class="forecast-boxes">
-          <h4>18/12/2022</h4>
-          <img src="./assets/icons/cloud.png" width="20px" height="20px" alt="weather-icon">
-          <p>Temp: 1°C</p>
-          <p>Wind: 3.48 kph</p>
-          <p>Humidity: 65%</p>
-        </div>
-        <div class="forecast-boxes">
-          <h4>18/12/2022</h4>
-          <img src="./assets/icons/cloud.png" width="20px" height="20px" alt="weather-icon">
-          <p>Temp: 1°C</p>
-          <p>Wind: 3.48 kph</p>
-          <p>Humidity: 65%</p>
-        </div>
-        <div class="forecast-boxes">
-          <h4>18/12/2022</h4>
-          <img src="./assets/icons/cloud.png" width="20px" height="20px" alt="weather-icon">
-          <p>Temp: 1°C</p>
-          <p>Wind: 3.48 kph</p>
-          <p>Humidity: 65%</p>
-        </div>
-        <div class="forecast-boxes">
-          <h4>18/12/2022</h4>
-          <img src="./assets/icons/cloud.png" width="20px" height="20px" alt="weather-icon">
-          <p>Temp: 1°C</p>
-          <p>Wind: 3.48 kph</p>
-          <p>Humidity: 65%</p>
-        </div>
       </section>
     </main>
   </div>
