@@ -8,6 +8,7 @@ var currentDate = moment().format("DD/MM/YYYY");
 
 console.log(currentDate);
 
+forecastInfoArray = JSON.parse(localStorage.getItem("forecast")) || [];
 
 function inputSubmitted(cityName) {
     $.get(currentUrl + `q=${cityName}`)
@@ -23,10 +24,20 @@ function inputSubmitted(cityName) {
                     <p id="daily-forecast-last-item">Humidity: ${currentData.main.humidity}%</p>
             `);
 
+            curentForecast = {
+                CityName: cityName,
+                CurrentDate: currentDate,
+                Temp: Math.round(currentData.main.temp),
+                Wind: currentData.wind.speed,
+                Humidity: currentData.main.humidity
+            }
+
+            forecastInfoArray.push(curentForecast);
+
             $('.fiveDayForevastTitle').removeClass("hide");
+
             $.get(forecastUrl + `lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
                 .then(function(forecastData) {
-                    console.log(forecastData);
                     for (var castObj of forecastData.list) {
 
                         var date = moment(castObj.dt_txt.split(' ')[0]).format("DD/MM/YYYY");
@@ -41,9 +52,20 @@ function inputSubmitted(cityName) {
                                 <p>Humidity: ${castObj.main.humidity}%</p>
                             </div>
                             `);
-                        };
 
+                            fiveDaysForecast = {
+                                Date: date,
+                                Temp: Math.round(castObj.main.temp),
+                                Wind: castObj.wind.speed,
+                                Humidity: castObj.main.humidity
+                            }
+
+                            forecastInfoArray.push(fiveDaysForecast);
+                        };
                     };
+
+                    console.log(forecastInfoArray);
+                    saveTasks(forecastInfoArray);
 
                     if(forecastData.cod == '200'){
                         $('.historyCityName').removeClass("hide");
@@ -51,15 +73,18 @@ function inputSubmitted(cityName) {
                             <button class="btn">${cityName}</button>
                         `);
                     }
+
                 });
         });
 };
 
-function showHistory(){
-    $('.historyCityName').removeClass("hide");
-    $('.historyCityName').append(`
-        <button class="btn">${cityName}</button>
-    `)
+// Local Storage Functions
+function saveTasks(arr) {
+    localStorage.setItem("forecast", JSON.stringify(arr));
+};
+
+function displayTasks() {
+    var taskList = JSON.parse(localStorage.getItem("forecast")) || [];
 };
 
 
@@ -83,12 +108,3 @@ $('.searchBtn').click(function() {
 // IconUrl: ${iconUrl + currentData.weather[0].icon}.png
 // `);
 
-
-
-{/* <div class="forecast-boxes ">
-<h4>18/12/2022</h4>
-<img src="./assets/icons/cloud.png" width="20px" height="20px" alt="weather-icon">
-<p>Temp: 1°C</p>
-<p>Wind: 3.48 kph</p>
-<p>Humidity: 65%</p>
-</div> */}
