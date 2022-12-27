@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hide{
+    display: none;
+}
+
+header{
+    width: 100%;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "serch-city-section forecast-section"
+    ;
+}
+
+.forecast-header-section{
+    display: flex;
+    text-align: center;
+}
+
+.forecast-header-section img{
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.forecast-section{
+    width: 80%;
+}
+
+.daily-forecast{
+    border: 1px solid black;
+    margin: 10px 0px;
+    padding: 5px 10px;
+}
+
+.daily-forecast h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.daily-forecast p{
+    margin: 15px 0px;
+}
+
+#daily-forecast-last-item{
+    padding-bottom: 10px;
+}
+
+.forecast-boxes{
+    border: 1px solid black;
+    background-color: rgb(2, 149, 199);
+    color: white;
+    margin-top: 10px;
+    padding: 10px 5px;
+}
+
+.forecast-boxes p{
+    padding-top: 10px;
+}
+
+.forecast-boxes img{
+    margin-top: 10px;
+}
+
+.serch-city-section{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+}
+
+.serch-city-section .btn{
+    margin-top: 15px;
+
+}
+
+.search-section{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+}
+
+.search-section .btn{
+    background-color: rgb(3, 168, 223);
+    color: white;
+}
+
+.search-section .btn:hover{
+    background-color: rgb(2, 149, 199);
+    cursor: pointer;
+}
+
+.search-section input{
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.btn{
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background-color: lightgray;
+}
+
+.btn:hover{
+    background-color: rgb(182, 181, 181);
+    cursor: pointer;
+}
+
+.forecast-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.fiveDays-forecast{
+ display: flex;
+ justify-content: space-between;
+ align-items: flex-start;
+
+}
+
+.forecast-boxes{
+    padding-right: 30px;
+    height: 180px;
+
+}
