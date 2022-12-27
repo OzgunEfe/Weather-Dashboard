@@ -84,7 +84,7 @@ function saveTasks(arr) {
 };
 
 function displayTasks() {
-    var taskList = JSON.parse(localStorage.getItem("forecast")) || [];
+    var forecastInfoArray = JSON.parse(localStorage.getItem("forecast")) || [];
 };
 
 
