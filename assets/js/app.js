@@ -1,5 +1,4 @@
 var apiKey = "869340399bd2cd397673477060de7d0b";
-var city = "London";
 var baseUrl = "https://api.openweathermap.org/data/2.5/";
 var currentUrl = baseUrl + `weather?appid=${apiKey}&units=metric&`;
 var forecastUrl = baseUrl + `forecast?appid=${apiKey}&units=metric&`;
@@ -37,11 +36,12 @@ function getDailyForecast(cityName) {
   });
 }
 
+// This function shows an alert if the city is not found.
 function cityNotFound() {
     alert("City not found!")
-}
+};
 
-
+// This function shows 5 Days forecast section.
 function getWeeklyForecast(currentData) {
   $(".fiveDays-forecast").html("");
   $.get(
@@ -67,10 +67,12 @@ function getWeeklyForecast(currentData) {
   });
 }
 
+// This function saves the city names to LocalStorage.
 function saveTasks(arr) {
   localStorage.setItem("forecast", JSON.stringify(arr));
 }
 
+// This function creates a button for each searched city.
 function displayHistory() {
   $(".historyCityName").html("");
   $(".historyCityName").removeClass("hide");
@@ -91,21 +93,21 @@ $(".searchBtn").click(function () {
     .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
     .join(" ");
 
-
   getDailyForecast(inputValue);
   $("#searchInput").val("");
+
 
   if (!cityNamesArray.includes(inputValue) && inputValue != "") {
         cityNamesArray.push(inputValue);
         saveTasks(cityNamesArray);
-  };
+    };
 
   displayHistory();
 
   historyButtons();
 });
 
-
+// This function shows the previously searched cities.
 function historyButtons(){
     $(".cityNameButtons").on("click", function(event) {
         var inputValue = $(this).text()
