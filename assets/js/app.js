@@ -10,9 +10,10 @@ cityNamesArray = JSON.parse(localStorage.getItem("forecast")) || [];
 // This function gets the forecast data and shows it on the screen.
 function getDailyForecast(cityName) {
   $(".daily-forecast").html("");
-  $.get(currentUrl + `q=${cityName}`).then(function (currentData) {
-    $(".daily-forecast").removeClass("hide");
-    $(".daily-forecast").append(`
+  $.get(currentUrl + `q=${cityName}`)
+    .then(function (currentData) {
+      $(".daily-forecast").removeClass("hide");
+      $(".daily-forecast").append(`
                   <div class="forecast-header-section">
                       <h2>${cityName} (${currentDate})</h2>
                       <img src="${
@@ -25,21 +26,30 @@ function getDailyForecast(cityName) {
                         currentData.main.humidity
                       }%</p>
         `);
+      $(".fiveDayForevastTitle").removeClass("hide");
 
-    $(".fiveDayForevastTitle").removeClass("hide");
-    getWeeklyForecast(currentData);
-  }).catch(function() {
-    $(".daily-forecast").addClass("hide");
-    $(".forecast-boxes").addClass("hide");
-    $(".fiveDayForevastTitle").addClass("hide");
-    setTimeout(cityNotFound, 50) ;
-  });
+      getWeeklyForecast(currentData);
+
+      if (!cityNamesArray.includes(cityName) && cityName != "") {
+        cityNamesArray.push(cityName);
+        saveTasks(cityNamesArray);
+      }
+
+      displayHistory();
+      historyButtons();
+    })
+    .catch(function () {
+      $(".daily-forecast").addClass("hide");
+      $(".forecast-boxes").addClass("hide");
+      $(".fiveDayForevastTitle").addClass("hide");
+      setTimeout(cityNotFound, 50);
+    });
 }
 
 // This function shows an alert if the city is not found.
 function cityNotFound() {
-    alert("City not found!")
-};
+  alert("City not found!");
+}
 
 // This function shows 5 Days forecast section.
 function getWeeklyForecast(currentData) {
@@ -96,33 +106,17 @@ $(".searchBtn").click(function () {
   getDailyForecast(inputValue);
   $("#searchInput").val("");
 
-
-  if (!cityNamesArray.includes(inputValue) && inputValue != "") {
-        cityNamesArray.push(inputValue);
-        saveTasks(cityNamesArray);
-    };
-
   displayHistory();
 
   historyButtons();
 });
 
 // This function shows the previously searched cities.
-function historyButtons(){
-    $(".cityNameButtons").on("click", function(event) {
-        var inputValue = $(this).text()
-        getDailyForecast(inputValue);
-    });
+function historyButtons() {
+  $(".cityNameButtons").on("click", function (event) {
+    var inputValue = $(this).text();
+    getDailyForecast(inputValue);
+  });
 }
 
 historyButtons();
-
-
-
-
-// console.log(`
-// Temp: ${Math.round(currentData.main.temp)},
-// Humidity: ${currentData.main.humidity},
-// Wind: ${currentData.wind.speed},
-// IconUrl: ${iconUrl + currentData.weather[0].icon}.png
-// `);
